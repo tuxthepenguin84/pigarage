@@ -1,0 +1,35 @@
+{
+  "api": {
+    "activationtime": 1,
+    "gpiodoorremote": 23,
+    "gpiodoorsensor": 24
+  },
+  "database": {
+    "columns": ["date", "time", "state"],
+    "connection": {
+      "host": "",
+      "port": "5432",
+      "dbname": "",
+      "user": "",
+      "password": "",
+      "connect_timeout": "2",
+      "sslmode": "require"
+    },
+    "retries": 3,
+    "table": "garage_door"
+  },
+  "matrix": {
+    "messagedelay": 300,
+    "roomid": "",
+    "token": ""
+  },
+  "notifier": {
+    "timeout": 10,
+    "url": "http://pigarageapi:5000/",
+    "statusrefresh": 1
+  },
+  "uptime": {
+    "delay": 30,
+    "id": ""
+  }
+}

@@ -1,0 +1,31 @@
+services:
+  pigarageapi:
+    image: pigarage/pigarageapi:latest
+    container_name: pigarageapi
+    privileged: true
+    restart: unless-stopped
+    networks:
+      - proxy
+    #ports:
+    #  - 5000:5000/tcp
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - /etc/timezone:/etc/timezone:ro
+
+  pigaragenotifier:
+    image: pigarage/pigaragenotifier:latest
+    container_name: pigaragenotifier
+    restart: unless-stopped
+    networks:
+      - proxy
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - /etc/timezone:/etc/timezone:ro
+    depends_on:
+      pigarageapi:
+        condition: service_healthy
+
+networks:
+  proxy:
+    driver: overlay
+    external: true
